@@ -1,0 +1,32 @@
+
+.typing-banner {
+  display: inline-block;
+  min-height: 1.2em;
+  height:15.9rem;
+  color: #70d6ff;
+  font-weight: 700;
+}
+
+.typing-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 0.8s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* typing-cursor */
+.typing-cursor {
+  display: inline-block;
+  animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
