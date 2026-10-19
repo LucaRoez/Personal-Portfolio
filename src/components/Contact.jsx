@@ -1,157 +1,172 @@
 import { useState } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+  Nav,
+  Tab,
+  Alert
+} from 'react-bootstrap';
+import { EnvelopeAtFill, Whatsapp } from 'react-bootstrap-icons';
 import '../css/Contact.css';
 
-const WHATSAPP_NUMBER = import.meta.env.CONTACT_EMAIL;
-const CONTACT_EMAIL = import.meta.env.WHATSAPP_NUMBER;
+const initialForm = {
+  name: "",
+  email: "",
+  subject: "",
+  message: ""
+};
 
 export const Contact = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-    });
+  const [formData, setFormData] = useState(initialForm);
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(null);
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-        setFormData((previous) => ({
-            ...previous,
-            [name]: value
-        }));
-    };
+    setFormData((previous) => ({
+      ...previous,
+      [name]: value
+    }));
+  };
 
-    const buildMessage = () => `
-        Nombre: ${formData.name}
-        Correo: ${formData.email}
-        Asunto: ${formData.subject}
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-        Mensaje:
-        ${formData.message}
-    `.trim();
+    setLoading(true);
+    setStatus(null);
 
-    const handleWhatsApp = (event) => {
-        event.preventDefault();
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
 
-        const message = encodeURIComponent(buildMessage());
-        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+      if (!response.ok) {
+        throw new Error("No se pudo enviar el correo");
+      }
 
-        window.open(url, '_blank', 'noopener,noreferrer');
-    };
+      setStatus({
+        type: "success",
+        message: "Tu consulta fue enviada correctamente."
+      });
 
-    const handleGmail = (event) => {
-        event.preventDefault();
-
-        const params = new URLSearchParams({
-            view: 'cm',
-            fs: '1',
-            to: CONTACT_EMAIL,
-            su: formData.subject,
-            body: buildMessage()
-        });
-
-        window.open(
-            `https://mail.google.com/mail/?${params.toString()}`,
-            '_blank',
-            'noopener,noreferrer'
-        );
-    };
+      setFormData(initialForm);
+    } catch (er) {
+      setStatus({
+        type: "danger",
+        message: er.message
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
     return (
         <section id="contact" className="contact-section py-5">
             <Container>
                 <Row className="justify-content-center">
                     <Col xs={12} md={10} lg={8}>
-                        <div className="contact-card p-4 p-md-5">
-                            <h2 className="text-center mb-2">
-                                Contactame
-                            </h2>
+                        <h2 className="text-center mb-4">Contactame</h2>
 
-                            <p className="text-center mb-4">
-                                Completá el formulario y elegí
-                                cómo querés enviarme tu consulta.
-                            </p>
+                        <Tab.Container defaultActiveKey="gmail">
+                            <Nav variant="tabs" className="mb-4">
+                                <Nav.Item>
+                                    <Nav.Link eventKey="gmail">
+                                        <EnvelopeAtFill className="mb-1 me-1" size={21} color="#3a4fda"/>
+                                        Gmail
+                                    </Nav.Link>
+                                </Nav.Item>
 
-                            <Form>
-                                <Row>
-                                    <Col md={6}>
-                                        <Form.Group className="mb-3" controlId="contactName">
-                                            <Form.Label>Nombre</Form.Label>
+                                <Nav.Item>
+                                    <Nav.Link eventKey="whatsapp">
+                                        <Whatsapp className="mb-1 me-1" size={22} color="#25D366"/>
+                                        WhatsApp
+                                    </Nav.Link>
+                                </Nav.Item>
+                            </Nav>
+
+                            <Tab.Content>
+                                <Tab.Pane eventKey="gmail">
+                                    <Form onSubmit={handleSubmit}>
+                                        <Row>
+                                            <Col md={6}>
+                                                <Form.Group className="mb-3">
+                                                    <Form.Label>Nombre</Form.Label>
+                                                    <Form.Control
+                                                        name="name"
+                                                        value={formData.name}
+                                                        onChange={handleChange}
+                                                        required
+                                                        maxLength={100}
+                                                    />
+                                                </Form.Group>
+                                            </Col>
+
+                                            <Col md={6}>
+                                                <Form.Group className="mb-3">
+                                                    <Form.Label>Correo electrónico</Form.Label>
+                                                    <Form.Control
+                                                        type="email"
+                                                        name="email"
+                                                        value={formData.email}
+                                                        onChange={handleChange}
+                                                        required
+                                                        maxLength={184}
+                                                    />
+                                                </Form.Group>
+                                            </Col>
+                                        </Row>
+
+                                        <Form.Group className="mb-3">
+                                            <Form.Label>Asunto</Form.Label>
                                             <Form.Control
-                                                type="text"
-                                                name="name"
-                                                placeholder="Tu nombre"
-                                                value={formData.name}
+                                                name="subject"
+                                                value={formData.subject}
                                                 onChange={handleChange}
-                                                autoComplete="name"
                                                 required
+                                                maxLength={150}
                                             />
                                         </Form.Group>
-                                    </Col>
 
-                                    <Col md={6}>
-                                        <Form.Group className="mb-3" controlId="contactEmail">
-                                            <Form.Label>Correo electrónico</Form.Label>
+                                        <Form.Group className="mb-3">
+                                            <Form.Label>Mensaje</Form.Label>
                                             <Form.Control
-                                                type="email"
-                                                name="email"
-                                                placeholder="tu@email.com"
-                                                value={formData.email}
+                                                as="textarea"
+                                                rows={5}
+                                                name="message"
+                                                value={formData.message}
                                                 onChange={handleChange}
-                                                autoComplete="email"
                                                 required
+                                                maxLength={5500}
                                             />
                                         </Form.Group>
-                                    </Col>
-                                </Row>
 
-                                <Form.Group className="mb-3" controlId="contactSubject">
-                                    <Form.Label>Asunto</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        name="subject"
-                                        placeholder="Motivo de tu consulta"
-                                        value={formData.subject}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Form.Group>
+                                        {status && (
+                                            <Alert variant={status.type} role="status">
+                                                {status.message}
+                                            </Alert>
+                                        )}
 
-                                <Form.Group className="mb-4" controlId="contactMessage">
-                                    <Form.Label>Mensaje</Form.Label>
-                                    <Form.Control
-                                        as="textarea"
-                                        name="message"
-                                        rows={5}
-                                        placeholder="Contame qué necesitás..."
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Form.Group>
+                                        <Button type="submit" disabled={loading}>
+                                            {loading ? "Enviando..." : "Enviar por correo"}
+                                        </Button>
+                                    </Form>
+                                </Tab.Pane>
 
-                                <div className="d-flex flex-column flex-sm-row gap-3">
-                                    <Button
-                                        variant="success"
-                                        className="flex-fill"
-                                        type="button"
-                                        onClick={handleWhatsApp}
-                                    >
-                                        Enviar por WhatsApp
-                                    </Button>
-
-                                    <Button
-                                        variant="dark"
-                                        className="flex-fill"
-                                        type="button"
-                                        onClick={handleGmail}
-                                    >
-                                        Enviar por Gmail
-                                    </Button>
-                                </div>
-                            </Form>
-                        </div>
+                                <Tab.Pane eventKey="whatsapp">
+                                    <p>
+                                        Próximamente: contacto directo por WhatsApp.
+                                    </p>
+                                </Tab.Pane>
+                            </Tab.Content>
+                        </Tab.Container>
                     </Col>
                 </Row>
             </Container>
