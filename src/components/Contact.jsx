@@ -72,7 +72,7 @@ export const Contact = () => {
         <section id="contact" className="contact-section py-5">
             <Container>
                 <Row className="justify-content-center">
-                    <Col xs={12} md={10} lg={8}>
+                    <Col xs={12} md={10} lg={8} className="pane-container">
                         <h2 className="text-center mb-4">Contactame</h2>
 
                         <Tab.Container defaultActiveKey="gmail">
@@ -98,7 +98,7 @@ export const Contact = () => {
                                         <Row>
                                             <Col md={6}>
                                                 <Form.Group className="mb-3">
-                                                    <Form.Label>Nombre</Form.Label>
+                                                    <Form.Label className="ps-1">Nombre</Form.Label>
                                                     <Form.Control
                                                         name="name"
                                                         value={formData.name}
@@ -111,7 +111,7 @@ export const Contact = () => {
 
                                             <Col md={6}>
                                                 <Form.Group className="mb-3">
-                                                    <Form.Label>Correo electrónico</Form.Label>
+                                                    <Form.Label className="ps-1">Correo electrónico</Form.Label>
                                                     <Form.Control
                                                         type="email"
                                                         name="email"
@@ -125,7 +125,7 @@ export const Contact = () => {
                                         </Row>
 
                                         <Form.Group className="mb-3">
-                                            <Form.Label>Asunto</Form.Label>
+                                            <Form.Label className="ps-1">Asunto</Form.Label>
                                             <Form.Control
                                                 name="subject"
                                                 value={formData.subject}
@@ -136,7 +136,7 @@ export const Contact = () => {
                                         </Form.Group>
 
                                         <Form.Group className="mb-3">
-                                            <Form.Label>Mensaje</Form.Label>
+                                            <Form.Label className="ps-1">Mensaje</Form.Label>
                                             <Form.Control
                                                 as="textarea"
                                                 rows={5}
@@ -154,9 +154,11 @@ export const Contact = () => {
                                             </Alert>
                                         )}
 
-                                        <Button type="submit" disabled={loading}>
-                                            {loading ? "Enviando..." : "Enviar por correo"}
-                                        </Button>
+                                        <Row className="d-flex px-2 mt-4">
+                                            <Button type="submit" disabled={loading}>
+                                                {loading ? "Enviando..." : "Enviar por correo"}
+                                            </Button>
+                                        </Row>
                                     </Form>
                                 </Tab.Pane>
 

@@ -1,16 +1,24 @@
 /* Custom CSS */
-.breadcrumb {
-  --bs-breadcrumb-divider: "·";
-  margin-left: .13rem;
+
+.root-container {
+  background-color: var(--color-background);
 }
-.breadcrumb .breadcrumb-item a {
-  font-size: 16px;
+
+main {
+  margin-top: 4rem;
+}
+
+section {
+  margin: 0 auto;
+}
+
+.site-eyebrow {
+  display: flex;
+}
+.site-eyebrow span {
+  font-size: 1em;
   font-weight: 500;
-  color: #758f97;
+  color: var(--color-text-muted);
   text-decoration: none;
-}
-.breadcrumb .breadcrumb-item a:hover {
-  color: #635454;
-  text-decoration: underline;
 }
 

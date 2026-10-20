@@ -1,13 +1,34 @@
+section#home {
+  background-color: var(--color-background);
+  position: relative;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+#first-col {
+  background-color: var(--color-primary);
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main-hero {
+  display: flex;
+  justify-content: space-between;
+}
 
 .typing-banner {
   display: inline-block;
-  min-height: 1.2em;
-  height:15.9rem;
-  color: #70d6ff;
+  min-height: 1.2rem;
+  max-width: 50%;
+  height: 15.9rem;
+  color: var(--color-accent);
   font-weight: 700;
 }
 
-.typing-cursor {
+span.typing-cursor {
+  font-size: .8em;
   display: inline-block;
   margin-left: 2px;
   animation: blink 0.8s steps(2, start) infinite;
@@ -29,4 +50,56 @@
   50% {
     opacity: 0;
   }
+}
+
+.hero-image {
+  display: block;
+  flex: 0 0 calc(50% - 1rem);
+  width: 100%;
+  height: 20rem;
+}
+.hero-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+}
+
+.btn-cta {
+  display: inline-flex;
+  background-color: var(--color-surface);
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: 0.65rem;
+  font-weight: 600;
+  transition: background-color 180ms ease,
+              transform 180ms ease,
+              box-shadow 180ms ease;
+}
+
+.btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 576px) {
+  .hero-main {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-image {
+    flex-basis: auto;
+  }
+}
+
+/* Tarjetas de Servicios */
+
+.service-img {
+  width: 100%;
+  max-height: 25rem;
+  object-fit: cover;
+  aspect-ratio: 4/3;
 }

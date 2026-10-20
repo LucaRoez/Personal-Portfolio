@@ -1,17 +1,27 @@
 import { useEffect, useState } from 'react'; 
 import { Container, Row, Col } from 'react-bootstrap';
 import CarouselModule from "react-multi-carousel";
+import { ArrowUpRight } from "react-bootstrap-icons";
+import hero from "../assets/hero.jpg";
 import '../css/Banner.css';
 import "react-multi-carousel/lib/styles.css";
+import options from "../data/texto-banner.json";
+import services from "../data/services-banner.json";
 
-const options = ['páginas y aplicaciones web', 'soluciones digitales', 'diseños personalizados'];
+
+const images = import.meta.glob("../assets/images/services/*", {
+  eager: true,
+  query: "?url",
+  import: "default"
+});
+
 export const Banner = () => {
   const [optionIndex, setOptionIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
   const [text, setText] = useState('');
   const typingSpeed = 80;
   const deletingSpeed = 40;
-  const pauseDuration = 1900;
+  const pauseDuration = 2300;
   const resetDuration = 300;
 
   useEffect(() => {
@@ -52,7 +62,7 @@ export const Banner = () => {
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1200 },
-            items: 2,
+            items: 1,
             slidesToSlide: 1
         },
         tablet: {
@@ -68,33 +78,46 @@ export const Banner = () => {
     };
 
     const Carousel = CarouselModule.default; // parche de error de importación desconocido
-    const projects = [
-        { id: 1, title: 'Página web', src: '', alt: 'Sitio corporativo' },
-        { id: 2, title: 'Aplicación web', src: '', alt: 'Sistema de gestión' },
-        { id: 3, title: 'Tienda online', src: '', alt: 'Catálogo de productos' }
-    ];
 
     return (        
-        <section id="home" className="mt-2">
-            <Container className="bg-secondary p-5">
-                <Row className="my-3">
-                    <Col className="bg-dark text-light p-4 rounded-5">
-                        <div className="mx-4 typing-banner">
-                            <h1>Soy Luca Ezequiel Rodríguez, tu desarrollador de
-                                <span> {text}</span><span className="typing-cursor">_</span></h1>
-                            <p></p>
+        <section id="home" className="p-3 pt-0">
+            <Container fluid>
+                <Row className="my-3 mt-0">
+                    <Col id="first-col" className="p-4 rounded-5 d-flex">
+                        <div className="main-hero d-flex justify-content-between">
+                            <div className="mx-4 typing-banner">
+                                <h1>Hacé crecer tu negocio con
+                                    <span> {text}</span><span className="typing-cursor">_</span></h1>
+                                <p></p>
+                            </div>
+                            <div className="hero-image">
+                                <img src={hero} alt="perfil" />
+                            </div>
                         </div>
-                        <img src="" alt="" />
+                        <div className="btn-content ms-auto">
+                            <button className="btn-cta">Solicitar presupuesto <ArrowUpRight size={18} strokeWidth={2}/></button>
+                        </div>
                     </Col>
                     <Col md={6}>
-                        <Carousel responsive={responsive} infinite={true} className="projects-carousel">
+                        <Carousel responsive={responsive} infinite={true} swipeable={true} draggable={true} className="services-carousel">
                             {
-                                projects.map((project) => (
-                                    <div key={project.id} className="project-card">
-                                        <img src={project.src} alt={project.alt} />
-                                        <h2 className="carousel-text">{project.title}</h2>
-                                    </div>
-                                ))
+                                services.map((service) => {
+                                    const src = images[`../assets/images/services/${service.src}`];
+
+                                    return (
+                                        <div key={service.id} className="service-card text-center">
+                                            <div className="card-img-container">
+                                                { src && <img
+                                                    className="service-img"
+                                                    src={src} alt={service.alt}
+                                                    style={{ objectPosition: service.objectPosition ?? "center" }}
+                                                /> }
+                                            </div>
+                                            <h2 className="carousel-title">{service.title}</h2>
+                                            <p className="carousel-text">{service.body}</p>
+                                        </div>
+                                    );
+                                })
                             }
                         </Carousel>
                     </Col>

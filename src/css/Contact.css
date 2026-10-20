@@ -2,6 +2,10 @@
     background-color: #f3f5f7;
 }
 
+.pane-container {
+    background-color: var(--color-surface);
+}
+
 .contact-card {
     background-color: #ffffff;
     border-radius: 1rem;

@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "Que te encuentren.",
+        "body": "Configurá tu presencia en Google Maps y otros canales relevantes para que tus clientes sepan quién sos, dónde estás y cómo contactarte.",
+        "src": "presencia-digital.jpg",
+        "alt": "presencia digital",
+        "btn": "Mejorar mi presencia digital →",
+        "objectPosition": ""
+    },
+    {
+        "id": 2,
+        "title": "Convertí visitas en consultas.",
+        "body": "Una web profesional, adaptada a celulares, con tus servicios, tus diferenciales y vías de contacto claras.",
+        "src": "desarrollo-web.jpg",
+        "alt": "desarrollo web",
+        "btn": "Crear mi página web →",
+        "objectPosition": "center 56%"
+    },
+    {
+        "id": 3,
+        "title": "Hacé más fácil el contacto.",
+        "body": "Integrá WhatsApp Business, catálogos y formularios para facilitar las consultas y solicitudes de presupuesto.",
+        "src": "canales-comerciales.jpg",
+        "alt": "canales comerciales",
+        "btn": "Organizar mis canales →",
+        "objectPosition": ""
+    },
+    {
+        "id": 4,
+        "title": "Simplificá tu gestión.",
+        "body": "Desarrollá herramientas para organizar clientes, presupuestos y procesos que hoy dependen de tareas manuales.",
+        "src": "software-a-medida.jpg",
+        "alt": "software a medida",
+        "btn": "Explorar soluciones a medida →",
+        "objectPosition": "center 16%"
+    }
+]

@@ -1,0 +1,31 @@
+.custom-navbar {
+  padding-inline: 2rem;
+  background-color: transparent;
+  box-shadow: none;
+  
+  transition:
+    background-color 0.3s ease-in,
+    box-shadow 0.3s ease-in;
+}
+
+.custom-navbar a {
+  color: var(--color-interactive);
+  transition:
+    color 0.2s linear
+}
+.custom-navbar a:hover {
+  color: var(--color-primary);
+}
+
+.custom-navbar.navbar-scrolled {
+  background-color: var(--color-primary);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.custom-navbar.navbar-scrolled a {
+  color: var(--color-accent);
+}
+
+.custom-navbar.navbar-scrolled a:hover {
+  color: var(--color-surface);
+}
