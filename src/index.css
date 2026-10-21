@@ -2,25 +2,25 @@
 
 :root {
   /* Marca */
-  --color-primary: #123B52;
-  --color-accent: #19B6B0;
-  --color-interactive: #087F8C;
+  --color-primary: #101828;
+  --color-accent: #00E5C3;
+  --color-interactive: #00AFA5;
 
   /* Fondos */
-  --color-background: #F4F8FA;
+  --color-background: #F8FAFC;
   --color-surface: #FFFFFF;
 
   /* Texto */
-  --color-text: #263746;
-  --color-text-muted: #5C6F7D;
+  --color-text: #1E293B;
+  --color-text-muted: #64748B;
 
   /* Bordes */
-  --color-border: #DCE6EB;
+  --color-border: #334155;
 
   /* Estados */
-  --color-focus: #087F8C;
+  --color-focus: #0B1220;
 
-  
+
   background-color: var(--color-background);
 }
 

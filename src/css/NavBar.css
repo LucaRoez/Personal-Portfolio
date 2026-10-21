@@ -1,4 +1,5 @@
 .custom-navbar {
+  font-size: 1.1em;
   padding-inline: 2rem;
   background-color: transparent;
   box-shadow: none;
@@ -28,4 +29,82 @@
 
 .custom-navbar.navbar-scrolled a:hover {
   color: var(--color-surface);
+}
+
+.logo-container {
+  width: 32px;
+  flex-shrink: 0;
+}
+.logo-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.custom-navbar .brand-text,
+.custom-navbar .brand-description {
+  font-size: 1.1em;
+}
+
+.custom-expand > .container-fluid {
+  position: relative;
+}
+/* Menú "colapsado"/desplegado adaptado de Bootstrap */
+@media (max-width: 985.98px) {
+  .custom-expand .navbar-collapse .navbar-nav {
+    align-items: flex-end;
+  }
+  .custom-expand .navbar-collapse {
+    position: absolute;
+    top: calc(100% + var(--bs-navbar-padding-y));
+    right: 0;
+    left: auto;
+
+    width: max-content;
+    min-width: 12rem;
+    max-width: calc(100vw - 1rem);
+
+    padding: 0.5rem 1rem 2rem;
+    background-color: var(--color-primary);
+    border-radius: 0 0 0.65rem 0.65rem;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+  }
+}
+
+/* Menú "expandido" o base, sobre el navbar */
+@media (min-width: 986px) {
+  .custom-expand,
+  .custom-expand > .container-fluid {
+    flex-wrap: nowrap;
+  }
+
+  .custom-expand {
+    justify-content: flex-start;
+  }
+
+  .custom-expand .navbar-nav {
+    flex-direction: row;
+  }
+
+  .custom-expand .navbar-nav .dropdown-menu {
+    position: absolute;
+  }
+
+  .custom-expand .navbar-nav .nav-link {
+    padding-right: var(--bs-navbar-nav-link-padding-x);
+    padding-left: var(--bs-navbar-nav-link-padding-x);
+  }
+
+  .custom-expand .navbar-collapse {
+    position: static;
+    display: flex !important;
+    flex-basis: auto;
+    flex-grow: 1;
+    align-items: center;
+  }
+
+  .custom-expand .navbar-toggler {
+    display: none !important;
+  }
 }

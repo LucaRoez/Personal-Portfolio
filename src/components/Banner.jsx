@@ -79,26 +79,26 @@ export const Banner = () => {
 
     const Carousel = CarouselModule.default; // parche de error de importación desconocido
 
-    return (        
-        <section id="home" className="p-3 pt-0">
+    return (
+        <section id="home" className="p-3 pt-0 mt-1">
             <Container fluid>
                 <Row className="my-3 mt-0">
-                    <Col id="first-col" className="p-4 rounded-5 d-flex">
-                        <div className="main-hero d-flex justify-content-between">
-                            <div className="mx-4 typing-banner">
+                    <Col id="first-col" className="p-4 rounded-3 d-flex flex-column">
+                        <div className="hero-layout">
+                            <div className="typing-banner">
                                 <h1>Hacé crecer tu negocio con
                                     <span> {text}</span><span className="typing-cursor">_</span></h1>
                                 <p></p>
                             </div>
-                            <div className="hero-image">
+                            <div className="hero-image rounded-3">
                                 <img src={hero} alt="perfil" />
                             </div>
-                        </div>
-                        <div className="btn-content ms-auto">
-                            <button className="btn-cta">Solicitar presupuesto <ArrowUpRight size={18} strokeWidth={2}/></button>
+                            <div className="btn-content ms-auto">
+                                <button className="btn-cta">Solicitar presupuesto <ArrowUpRight size={18} strokeWidth={2}/></button>
+                            </div>
                         </div>
                     </Col>
-                    <Col md={6}>
+                    <Col id="second-col" xl={6}>
                         <Carousel responsive={responsive} infinite={true} swipeable={true} draggable={true} className="services-carousel">
                             {
                                 services.map((service) => {
@@ -113,7 +113,7 @@ export const Banner = () => {
                                                     style={{ objectPosition: service.objectPosition ?? "center" }}
                                                 /> }
                                             </div>
-                                            <h2 className="carousel-title">{service.title}</h2>
+                                            <h2 className="carousel-title mt-4">{service.title}</h2>
                                             <p className="carousel-text">{service.body}</p>
                                         </div>
                                     );
