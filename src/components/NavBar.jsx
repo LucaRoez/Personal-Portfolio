@@ -3,13 +3,47 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
-import { useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import "../css/NavBar.css";
 import logo from "../assets/logo-dark.png";
 
 export const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const navbarRef = useRef(null);
+  const togglerRef = useRef(null);
 
+  // click y focus relativo al NavBar
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (
+        navbarRef.current &&
+        !navbarRef.current.contains(event.target) // por fuera del navbar
+      ) {
+        setExpanded(false);
+      }
+    };
+
+    const activeElement = document.activeElement;
+    if (
+      activeElement?.matches(".custom-navbar .nav-link")
+    ) {
+      activeElement.blur();
+    }
+
+    document.addEventListener("click", handleOutsideClick);
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
+  // focus del toggler global
+  useEffect(() => {
+    if (!expanded && document.activeElement === togglerRef.current) {
+      togglerRef.current.blur();
+    }
+  }, [expanded]);
+
+  // efecto del scroll sobre el NavBar
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -22,7 +56,14 @@ export const NavBar = () => {
   }, []);
 
   return (
-    <Navbar fixed="top" expand={false} className={`ps-1 custom-navbar custom-expand ${scrolled ? 'navbar-scrolled' : ''}`}>
+    <Navbar
+      fixed="top"
+      expand={false}
+      expanded={expanded}
+      onToggle={(nextExpanded) => setExpanded(nextExpanded)}
+      ref={navbarRef}
+      className={`ps-1 custom-navbar custom-expand ${scrolled ? 'navbar-scrolled' : ''}`}
+    >
       <Container fluid className="ps-1">
         <div className="identity-container">
           <div className="mt-1 me-3 logo-container">
@@ -31,18 +72,18 @@ export const NavBar = () => {
           <Navbar.Brand className="fw-semibold me-2 brand-text" href="/">Luca Rodríguez</Navbar.Brand>
         </div>
         <Navbar.Brand className="w-500 ms-2 me-auto brand-description" href="/">DESARROLLO WEB · SOFTWARE · SOLUCIONES DIGITALES</Navbar.Brand>
-        <Navbar.Toggle aria-controls="nav-body" />
+        <Navbar.Toggle ref={togglerRef} aria-controls="nav-body" />
         <Navbar.Collapse id="nav-body">
           <Nav className="ms-auto">
-            <Nav.Link href="#home">
+            <Nav.Link href="#home" onClick={() => setExpanded(false)}>
               Inicio
             </Nav.Link>
 
-            <Nav.Link href="#servicios">
+            <Nav.Link href="#servicios" onClick={() => setExpanded(false)}>
               Servicios
             </Nav.Link>
 
-            <Nav.Link href="#contacto">
+            <Nav.Link href="#contacto" onClick={() => setExpanded(false)}>
               Contacto
             </Nav.Link>
           </Nav>

@@ -1,4 +1,5 @@
 .custom-navbar {
+  z-index: 4;
   font-size: 1.1em;
   padding-inline: 2rem;
   background-color: transparent;
@@ -12,20 +13,30 @@
 .custom-navbar a {
   color: var(--color-interactive);
   transition:
-    color 0.2s linear
+    color 0.2s linear;
 }
-.custom-navbar a:hover {
+.custom-navbar .navbar-nav .nav-link:hover,
+.custom-navbar .navbar-nav .nav-link:focus {
   color: var(--color-primary);
+}
+.custom-navbar .navbar-nav .nav-link:active {
+  color: var(--color-accent);
 }
 
 .navbar-toggler {
   border: 2px solid #334155 !important;
+}
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.15rem var(--color-focus);
 }
 .navbar-toggler .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23334155' stroke-width='2' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
 }
 .navbar-scrolled .navbar-toggler {
   border: 2px solid #00E5C3 !important;
+}
+.navbar-scrolled .navbar-toggler:focus {
+  box-shadow: 0 0 0 0.15rem var(--color-interactive);
 }
 .navbar-scrolled .navbar-toggler .navbar-toggler-icon{
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%2300E5C3' stroke-width='2' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
@@ -39,9 +50,12 @@
 .custom-navbar.navbar-scrolled a {
   color: var(--color-accent);
 }
-
-.custom-navbar.navbar-scrolled a:hover {
+.custom-navbar.navbar-scrolled .navbar-nav .nav-link:hover, 
+.custom-navbar.navbar-scrolled .navbar-nav .nav-link.active {
   color: var(--color-surface);
+}
+.custom-navbar.navbar-scrolled .navbar-nav .nav-link:active {
+  color: var(--color-accent);
 }
 
 .identity-container {
@@ -71,21 +85,22 @@
   .custom-expand .navbar-collapse .navbar-nav {
     align-items: flex-end;
   }
+
   .custom-expand .navbar-collapse {
     position: absolute;
     top: calc(100% + var(--bs-navbar-padding-y));
     right: 0;
-    left: auto;
-
-    width: max-content;
-    min-width: 12rem;
-    max-width: calc(100vw - 1rem);
+    left: 0;
 
     padding: 0.5rem 1rem 2rem;
     background-color: var(--color-primary);
     border-radius: 0 0 0.65rem 0.65rem;
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
     z-index: 3;
+  }
+  .custom-navbar .navbar-nav .nav-link:hover, 
+  .custom-navbar .navbar-nav .nav-link.active {
+    color: var(--color-surface);
   }
 }
 

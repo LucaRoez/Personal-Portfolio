@@ -11,62 +11,69 @@ import {
 } from 'react-bootstrap';
 import { EnvelopeAtFill, Whatsapp } from 'react-bootstrap-icons';
 import '../css/Contact.css';
+import { getWhatsAppLink } from "../utils/whatsapp.js";
 
-const initialForm = {
-  name: "",
-  email: "",
-  subject: "",
-  message: ""
+const initialEmailForm = {
+    name: "",
+    email: "",
+    subject: "",
+    message: "Hola, quisiera consultar sobre sus servicios de desarrollo web y software."
+};
+
+const initialWhatsAppForm = {
+    name: "",
+    message: "Quisiera consultar sobre sus servicios de desarrollo web y software."
 };
 
 export const Contact = () => {
-  const [formData, setFormData] = useState(initialForm);
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState(null);
+    const [emailFormData, setEmailFormData] = useState(initialEmailForm);
+    const [whatsappFormData, setWhatsAppFormData] = useState(initialWhatsAppForm);
+    const [loading, setLoading] = useState(false);
+    const [status, setStatus] = useState(null);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+    const handleChange = (event, setFormData) => {
+        const { name, value } = event.target;
 
-    setFormData((previous) => ({
-      ...previous,
-      [name]: value
-    }));
-  };
+        setFormData((previous) => ({
+        ...previous,
+        [name]: value
+        }));
+    };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-    setLoading(true);
-    setStatus(null);
+        setLoading(true);
+        setStatus(null);
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
-      });
+        try {
+        const response = await fetch("/api/contact", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify(emailFormData)
+        });
 
-      if (!response.ok) {
-        throw new Error("No se pudo enviar el correo");
-      }
+        if (!response.ok) {
+            throw new Error("No se pudo enviar el correo");
+        }
 
-      setStatus({
-        type: "success",
-        message: "Tu consulta fue enviada correctamente."
-      });
+        setStatus({
+            type: "success",
+            message: "Tu consulta fue enviada correctamente."
+        });
 
-      setFormData(initialForm);
-    } catch (er) {
-      setStatus({
-        type: "danger",
-        message: er.message
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+        setEmailFormData(initialEmailForm);
+        } catch (er) {
+        setStatus({
+            type: "danger",
+            message: er.message
+        });
+        } finally {
+        setLoading(false);
+        }
+    };
 
     return (
         <section id="contacto" className="contact-section py-5">
@@ -101,8 +108,8 @@ export const Contact = () => {
                                                     <Form.Label className="ps-1">Nombre</Form.Label>
                                                     <Form.Control
                                                         name="name"
-                                                        value={formData.name}
-                                                        onChange={handleChange}
+                                                        value={emailFormData.name}
+                                                        onChange={(event) => handleChange(event, setEmailFormData)}
                                                         required
                                                         maxLength={100}
                                                     />
@@ -115,8 +122,8 @@ export const Contact = () => {
                                                     <Form.Control
                                                         type="email"
                                                         name="email"
-                                                        value={formData.email}
-                                                        onChange={handleChange}
+                                                        value={emailFormData.email}
+                                                        onChange={(event) => handleChange(event, setEmailFormData)}
                                                         required
                                                         maxLength={184}
                                                     />
@@ -128,8 +135,8 @@ export const Contact = () => {
                                             <Form.Label className="ps-1">Asunto</Form.Label>
                                             <Form.Control
                                                 name="subject"
-                                                value={formData.subject}
-                                                onChange={handleChange}
+                                                value={emailFormData.subject}
+                                                onChange={(event) => handleChange(event, setEmailFormData)}
                                                 required
                                                 maxLength={150}
                                             />
@@ -141,8 +148,8 @@ export const Contact = () => {
                                                 as="textarea"
                                                 rows={5}
                                                 name="message"
-                                                value={formData.message}
-                                                onChange={handleChange}
+                                                value={emailFormData.message}
+                                                onChange={(event) => handleChange(event, setEmailFormData)}
                                                 required
                                                 maxLength={5500}
                                             />
@@ -163,9 +170,48 @@ export const Contact = () => {
                                 </Tab.Pane>
 
                                 <Tab.Pane eventKey="whatsapp">
-                                    <p>
-                                        Próximamente: contacto directo por WhatsApp.
-                                    </p>
+                                    <Form
+                                        onSubmit={(event) => {
+                                            event.preventDefault();
+
+                                            const message = `Hola, soy ${whatsappFormData.name.trim()}.\n\n${whatsappFormData.message.trim()}`;
+                                            window.open(
+                                                getWhatsAppLink(message),
+                                                "_blank",
+                                                "noopener,noreferrer"
+                                            );
+                                        }}
+                                    >
+                                        <Form.Group className="mb-3">
+                                            <Form.Label className="ps-1">Nombre</Form.Label>
+                                            <Form.Control
+                                                name="name"
+                                                value={whatsappFormData.name}
+                                                onChange={(event) => handleChange(event, setWhatsAppFormData)}
+                                                required
+                                                maxLength={100}
+                                            />
+                                        </Form.Group>
+
+                                        <Form.Group className="mb-3">
+                                            <Form.Label className="ps-1">Mensaje</Form.Label>
+                                            <Form.Control
+                                                as="textarea"
+                                                rows={5}
+                                                name="message"
+                                                value={whatsappFormData.message}
+                                                onChange={(event) => handleChange(event, setWhatsAppFormData)}
+                                                required
+                                                maxLength={5500}
+                                            />
+                                        </Form.Group>
+
+                                        <Row className="d-flex px-2 mt-4">
+                                            <Button type="submit">
+                                                Continuar con WhatsApp
+                                            </Button>
+                                        </Row>
+                                    </Form>
                                 </Tab.Pane>
                             </Tab.Content>
                         </Tab.Container>
