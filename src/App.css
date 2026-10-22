@@ -22,3 +22,9 @@ section {
   text-decoration: none;
 }
 
+#home {
+  scroll-margin-top: 6rem;
+}
+#servicios, #contacto {
+  scroll-margin-top: 4.5rem;
+}

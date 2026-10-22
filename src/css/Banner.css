@@ -7,10 +7,17 @@ h1 {
   font-size: 2em;
 }
 
+span {  
+  color: var(--color-accent);
+}
+
 #first-col {
   min-height: 20rem;
   background-color: var(--color-primary);
   justify-content: flex-start;
+}
+#second-col {
+  background-color: var(--color-surface);
 }
 
 /* animación de 'tipeo' */

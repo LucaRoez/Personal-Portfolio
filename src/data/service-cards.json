@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Presencia digital",
+    "body": "Hacé que tus clientes encuentren tu negocio y sepan cómo contactarte.",
+    "btn": "Mejorar mi presencia →"
+  },
+  {
+    "id": 2,
+    "title": "Desarrollo web",
+    "body": "Mostrá tus servicios con una web profesional, rápida y adaptable a celulares.",
+    "btn": "Crear mi página web →"
+  },
+  {
+    "id": 3,
+    "title": "Canales de contacto y ventas",
+    "body": "Facilitá las consultas con WhatsApp Business, formularios y catálogos digitales.",
+    "btn": "Organizar mis canales →"
+  },
+  {
+    "id": 4,
+    "title": "Software a medida",
+    "body": "Organizá clientes, presupuestos y tareas con herramientas adaptadas a tu negocio.",
+    "btn": "Consultar una solución →"
+  }
+]

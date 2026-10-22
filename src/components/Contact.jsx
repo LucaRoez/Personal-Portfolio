@@ -69,10 +69,10 @@ export const Contact = () => {
   };
 
     return (
-        <section id="contact" className="contact-section py-5">
+        <section id="contacto" className="contact-section py-5">
             <Container>
                 <Row className="justify-content-center">
-                    <Col xs={12} md={10} lg={8} className="pane-container rounded-2">
+                    <Col xs={12} md={10} lg={8} className="pane-container rounded-2 pb-3 pt-2">
                         <h2 className="text-center mb-4">Contactame</h2>
 
                         <Tab.Container defaultActiveKey="gmail">

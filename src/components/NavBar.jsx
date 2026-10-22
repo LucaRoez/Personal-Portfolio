@@ -24,23 +24,25 @@ export const NavBar = () => {
   return (
     <Navbar fixed="top" expand={false} className={`ps-1 custom-navbar custom-expand ${scrolled ? 'navbar-scrolled' : ''}`}>
       <Container fluid className="ps-1">
-        <div className="me-2 logo-container">
-          <img src={logo} alt="logo" className="logo-img" />
+        <div className="identity-container">
+          <div className="mt-1 me-3 logo-container">
+            <img src={logo} alt="logo" className="logo-img" />
+          </div>
+          <Navbar.Brand className="fw-semibold me-2 brand-text" href="/">Luca Rodríguez</Navbar.Brand>
         </div>
-        <Navbar.Brand className="fw-semibold me-auto brand-text" href="/">Luca Rodríguez</Navbar.Brand>
         <Navbar.Brand className="w-500 ms-2 me-auto brand-description" href="/">DESARROLLO WEB · SOFTWARE · SOLUCIONES DIGITALES</Navbar.Brand>
         <Navbar.Toggle aria-controls="nav-body" />
         <Navbar.Collapse id="nav-body">
           <Nav className="ms-auto">
-            <Nav.Link href="/">
+            <Nav.Link href="#home">
               Inicio
             </Nav.Link>
 
-            <Nav.Link href="/servicios">
+            <Nav.Link href="#servicios">
               Servicios
             </Nav.Link>
 
-            <Nav.Link href="/contacto">
+            <Nav.Link href="#contacto">
               Contacto
             </Nav.Link>
           </Nav>

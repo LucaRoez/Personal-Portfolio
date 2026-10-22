@@ -6,6 +6,8 @@ import './App.css';
 import NavBar from './components/NavBar';
 import Banner from './components/Banner';
 import Contact from "./components/Contact";
+import Services from './components/Services';
+import Footer from './components/Footer';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -21,9 +23,12 @@ function App() {
             <span>DESARROLLO WEB Y SOFTWARE · EN PARAGUAY</span>
           </div>
           <Banner />
+          <Services />
           <Contact />
         </main>
-        <footer></footer>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     </>
   )
