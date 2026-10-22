@@ -10,28 +10,32 @@ import Services from './components/Services';
 import Footer from './components/Footer';
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [count, setCount] = useState(0);
+    const [contactRequest, setContactRequest] = useState(null);
 
-  return (
-    <>
-      <div className="root-container">
-        <header>
-          <NavBar />
-        </header>
-        <main>
-          <div className="site-eyebrow ps-1">
-            <span>DESARROLLO WEB Y SOFTWARE · EN PARAGUAY</span>
-          </div>
-          <Banner />
-          <Services />
-          <Contact />
-        </main>
-        <footer>
-          <Footer />
-        </footer>
-      </div>
-    </>
-  )
+    // enlace entre los híper-vínculos del componente Services con el formulario en Contact
+    const handleWhatsAppContact = (message) => setContactRequest({ message });
+
+    return (
+        <>
+        <div className="root-container">
+            <header>
+            <NavBar />
+            </header>
+            <main>
+            <div className="site-eyebrow ps-1">
+                <span>DESARROLLO WEB Y SOFTWARE · EN PARAGUAY</span>
+            </div>
+            <Banner />
+            <Services onWhatsAppContact={handleWhatsAppContact} />
+            <Contact contactRequest={contactRequest} />
+            </main>
+            <footer>
+            <Footer />
+            </footer>
+        </div>
+        </>
+    )
 }
 
 export default App

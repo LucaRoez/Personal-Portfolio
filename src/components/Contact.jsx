@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Container,
   Row,
@@ -25,11 +25,26 @@ const initialWhatsAppForm = {
     message: "Quisiera consultar sobre sus servicios de desarrollo web y software."
 };
 
-export const Contact = () => {
+export const Contact = ({ contactRequest }) => {
+    // forms
     const [emailFormData, setEmailFormData] = useState(initialEmailForm);
     const [whatsappFormData, setWhatsAppFormData] = useState(initialWhatsAppForm);
+    // UI
     const [loading, setLoading] = useState(false);
     const [status, setStatus] = useState(null);
+    
+    // Services link effects
+    const [activeTab, setActiveTab] = useState("gmail");
+    useEffect(() => {
+        if (!contactRequest) return;
+
+        setActiveTab("whatsapp");
+
+        setWhatsAppFormData((previous) => ({
+            ...previous,
+            message: contactRequest.message
+        }));
+    }, [contactRequest]);
 
     const handleChange = (event, setFormData) => {
         const { name, value } = event.target;
@@ -82,7 +97,13 @@ export const Contact = () => {
                     <Col xs={12} md={10} lg={8} className="pane-container rounded-2 pb-3 pt-2">
                         <h2 className="text-center mb-4">Contactame</h2>
 
-                        <Tab.Container defaultActiveKey="gmail">
+                        <Tab.Container
+                            defaultActiveKey="gmail"
+                            activeKey={activeTab}
+                            onSelect={(key) => {
+                                if (key) setActiveTab(key);
+                            }}
+                        >
                             <Nav variant="tabs" className="mb-4">
                                 <Nav.Item>
                                     <Nav.Link eventKey="gmail">

@@ -101,7 +101,7 @@ span.typing-cursor {
   box-shadow: 0 5px 14px rgba(0, 0, 0, 0.15);
 }
 
-@media (max-width: 1999px) {
+@media (max-width: 1199px) {
   .hero-layout {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:

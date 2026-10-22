@@ -3,24 +3,28 @@
     "id": 1,
     "title": "Presencia digital",
     "body": "Hacé que tus clientes encuentren tu negocio y sepan cómo contactarte.",
-    "btn": "Mejorar mi presencia →"
+    "btn": "Mejorar mi presencia →",
+    "linkMessage": "Quisiera mejorar la presencia digital de mi negocio. ¿Podrías contarme qué servicios ofrecés y cómo podemos empezar?"
   },
   {
     "id": 2,
     "title": "Desarrollo web",
     "body": "Mostrá tus servicios con una web profesional, rápida y adaptable a celulares.",
-    "btn": "Crear mi página web →"
+    "btn": "Crear mi página web →",
+    "linkMessage": "Estoy interesado en crear una página web para mi negocio. ¿Podrías contarme cómo trabajás y qué opciones ofrecés?"
   },
   {
     "id": 3,
     "title": "Canales de contacto y ventas",
     "body": "Facilitá las consultas con WhatsApp Business, formularios y catálogos digitales.",
-    "btn": "Organizar mis canales →"
+    "btn": "Organizar mis canales →",
+    "linkMessage": "Quisiera mejorar los canales de contacto y ventas de mi negocio. ¿Podrías asesorarme sobre las opciones disponibles?"
   },
   {
     "id": 4,
     "title": "Software a medida",
     "body": "Organizá clientes, presupuestos y tareas con herramientas adaptadas a tu negocio.",
-    "btn": "Consultar una solución →"
+    "btn": "Consultar una solución →",
+    "linkMessage": "Necesito una solución de software para mejorar la gestión de mi negocio. ¿Podemos conversar sobre lo que necesito?"
   }
 ]

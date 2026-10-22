@@ -1,7 +1,15 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
 import services from "../data/service-cards.json";
+import { GeoAlt, Display, Wechat, Diagram3 }  from 'react-bootstrap-icons';
+import {  } from "../css/Services.css";
 
-export const Services = () => {
+const serviceIcons = {
+  1: GeoAlt,
+  2: Display,
+  3: Wechat,
+  4: Diagram3
+};
+export const Services = ({ onWhatsAppContact  }) => {
   return (
     <section id="servicios" className="py-0">
       <Container>
@@ -13,26 +21,33 @@ export const Services = () => {
           </p>
         </header>
 
-        <Row xs={1} md={2} className="g-4">
-          {services.map((service) => (
-            <Col key={service.id}>
-              <Card className="h-100 service-card">
-                <Card.Body className="p-4">
-                  <Card.Title as="h3">
-                    {service.title}
-                  </Card.Title>
+        <Row xs={1} lg={2} className="g-4">
+          {services.map((service) => {
+            const Icon = serviceIcons[service.id];
 
-                  <Card.Text>
-                    {service.body}
-                  </Card.Text>
+            return (
+              <Col key={service.id}>
+                <Card className="h-100">
+                  <Card.Body className="p-4 service-card">
+                    <span className="mb-3 ms-1 icon-container">
+                      {Icon && <Icon size={32} className="service-icon" />}
+                    </span>
+                    <Card.Title as="h3">
+                      {service.title}
+                    </Card.Title>
 
-                  <a href="#contacto">
-                    {service.btn}
-                  </a>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
+                    <Card.Text>
+                      {service.body}
+                    </Card.Text>
+
+                    <a href="#contacto" onClick={() => onWhatsAppContact(service.linkMessage)}>
+                      {service.btn}
+                    </a>
+                  </Card.Body>
+                </Card>
+              </Col>
+            )
+          })}
         </Row>
       </Container>
     </section>

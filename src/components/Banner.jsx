@@ -105,7 +105,7 @@ export const Banner = () => {
                                     const src = images[`../assets/images/services/${service.src}`];
 
                                     return (
-                                        <div key={service.id} className="service-card text-center">
+                                        <div key={service.id} className="service-item text-center">
                                             <div className="card-img-container">
                                                 { src && <img
                                                     className="service-img"

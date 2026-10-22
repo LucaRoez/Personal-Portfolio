@@ -1,0 +1,23 @@
+.icon-container {
+  background-color: var(--color-primary);
+  display: inline-flex;
+  padding: .8rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  border: .15rem solid var(--color-interactive);
+}
+
+.service-icon {
+  color: var(--color-accent);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -20,16 +20,18 @@ export const NavBar = () => {
         navbarRef.current &&
         !navbarRef.current.contains(event.target) // por fuera del navbar
       ) {
+        navbarRef.current
+          .querySelectorAll(".nav-link.active")
+          .forEach((link) => link.classList.remove("active"));
+
         setExpanded(false);
+
+        const activeElement = document.activeElement;
+        if (activeElement?.matches(".custom-navbar .nav-link")) {
+          activeElement.blur();
+        }
       }
     };
-
-    const activeElement = document.activeElement;
-    if (
-      activeElement?.matches(".custom-navbar .nav-link")
-    ) {
-      activeElement.blur();
-    }
 
     document.addEventListener("click", handleOutsideClick);
     return () => {
