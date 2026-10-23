@@ -16,43 +16,43 @@ const images = import.meta.glob("../assets/images/services/*", {
 });
 
 export const Banner = () => {
-  const [optionIndex, setOptionIndex] = useState(0);
-  const [deleting, setDeleting] = useState(false);
-  const [text, setText] = useState('');
-  const typingSpeed = 80;
-  const deletingSpeed = 40;
-  const pauseDuration = 2300;
-  const resetDuration = 300;
+    const [optionIndex, setOptionIndex] = useState(0);
+    const [deleting, setDeleting] = useState(false);
+    const [text, setText] = useState('');
+    const typingSpeed = 80;
+    const deletingSpeed = 40;
+    const pauseDuration = 2300;
+    const resetDuration = 300;
 
-  useEffect(() => {
-    if (options.length === 0) return
+    useEffect(() => {
+        if (options.length === 0) return
 
-    const currentOption = options[optionIndex % options.length];
-    let delay = deleting ? deletingSpeed : typingSpeed;
+        const currentOption = options[optionIndex % options.length];
+        let delay = deleting ? deletingSpeed : typingSpeed;
 
-    if (!deleting && text === currentOption) {
-      delay = pauseDuration;
-    } else if (deleting && text === '') {
-      delay = resetDuration;
-    }
+        if (!deleting && text === currentOption) {
+        delay = pauseDuration;
+        } else if (deleting && text === '') {
+        delay = resetDuration;
+        }
 
-    const timeout = setTimeout(() => {
-      if (!deleting && text === currentOption) {
-        setDeleting(true);
-      } else if (deleting && text === '') {
-        setDeleting(false);
-        setOptionIndex((index) => (index + 1) % options.length);
-      } else {
-        setText(
-          currentOption.substring(
-            0,
-            text.length + (deleting ? -1 : 1)
-          )
-        );
-      }
-    }, delay)
+        const timeout = setTimeout(() => {
+        if (!deleting && text === currentOption) {
+            setDeleting(true);
+        } else if (deleting && text === '') {
+            setDeleting(false);
+            setOptionIndex((index) => (index + 1) % options.length);
+        } else {
+            setText(
+            currentOption.substring(
+                0,
+                text.length + (deleting ? -1 : 1)
+            )
+            );
+        }
+        }, delay)
 
-    return () => clearTimeout(timeout)
+        return () => clearTimeout(timeout);
     }, [
         text,
         deleting,

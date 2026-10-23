@@ -204,7 +204,7 @@ export const Contact = ({ contactRequest }) => {
                                         }}
                                     >
                                         <Form.Group className="mb-3">
-                                            <Form.Label className="ps-1">Nombre</Form.Label>
+                                            <Form.Label className="ps-1">Nombre / Presentación</Form.Label>
                                             <Form.Control
                                                 name="name"
                                                 value={whatsappFormData.name}

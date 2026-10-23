@@ -1,7 +1,7 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
 import services from "../data/service-cards.json";
-import { GeoAlt, Display, Wechat, Diagram3 }  from 'react-bootstrap-icons';
-import {  } from "../css/Services.css";
+import { GeoAlt, Display, Wechat, Diagram3, ArrowUpRight }  from 'react-bootstrap-icons';
+import "../css/Services.css";
 
 const serviceIcons = {
   1: GeoAlt,
@@ -48,6 +48,13 @@ export const Services = ({ onWhatsAppContact  }) => {
               </Col>
             )
           })}
+        </Row>
+        <Row className="mx-4">
+          <Col xs={12} xl={9} className="last-service-message p-4 mt-4 rounded-4">
+            <h3>¿No sabés qué solución necesitás?</h3>
+            <p>Contame qué querés mejorar en tu negocio y evaluamos las opciones.</p>
+            <button className="p-2 px-3 rounded-2">Consultar mi proyecto <ArrowUpRight size={10} className="mb-1" /></button>
+          </Col>
         </Row>
       </Container>
     </section>

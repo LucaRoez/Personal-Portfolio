@@ -21,3 +21,21 @@
     align-items: center;
   }
 }
+
+.last-service-message {
+  background-color: var(--color-primary);
+
+  h3 {
+    color: var(--color-surface);
+  }
+  p {
+    color: var(--color-background);
+  }
+
+  button {
+    background-color: var(--color-accent);
+    color: var(--color-focus);
+    border-color: var(--color-interactive);
+    font-weight: 500;
+  }
+}

@@ -105,7 +105,7 @@
 }
 
 /* Menú "expandido" o base, sobre el navbar */
-@media (min-width: 986px) {
+@media (min-width: 1064px) {
   .custom-expand,
   .custom-expand > .container-fluid {
     flex-wrap: nowrap;

@@ -1,0 +1,120 @@
+
+#productos {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.products-carousel {
+  width: 100%;
+}
+
+.product-slide {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--color-primary);
+  color: var(--color-background);
+}
+
+.product-preview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: white;
+}
+
+.product-overlay {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  padding: 5rem 12%;
+  background: linear-gradient(
+    90deg,
+    rgb(15 23 42 / 95%) 0%,
+    rgb(15 23 42 / 75%) 45%,
+    rgb(15 23 42 / 10%) 100%
+  );
+  pointer-events: none;
+}
+
+.product-content {
+  max-width: 600px;
+  pointer-events: auto;
+}
+
+.product-content h2 {
+  color: var(--color-accent);
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  margin-bottom: 1.5rem;
+}
+
+.product-content p {
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.product-button {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 6px;
+  background: var(--color-accent);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.products-arrow {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: .3em;
+  width: 1.8em;
+  height: 1.8em;
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 8px;
+  background: rgb(15 23 42 / 60%);
+  color: var(--color-surface);
+  font-size: 2.5em;
+  cursor: pointer;
+}
+
+.products-arrow:hover {
+  background: var(--color-accent);
+  color: var(--color-primary);
+}
+
+.products-arrow-left {
+  left: 1.5rem;
+}
+
+.products-arrow-right {
+  right: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .product-overlay {
+    padding: 3rem 5rem;
+    background: rgb(15 23 42 / 78%);
+  }
+
+  .products-arrow {
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  .products-arrow-left {
+    left: 0.5rem;
+  }
+
+  .products-arrow-right {
+    right: 0.5rem;
+  }
+}

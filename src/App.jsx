@@ -8,6 +8,7 @@ import Banner from './components/Banner';
 import Contact from "./components/Contact";
 import Services from './components/Services';
 import Footer from './components/Footer';
+import Products from "./components/Products";
 
 function App() {
     const [count, setCount] = useState(0);
@@ -28,10 +29,11 @@ function App() {
             </div>
             <Banner />
             <Services onWhatsAppContact={handleWhatsAppContact} />
+            <Products />
             <Contact contactRequest={contactRequest} />
             </main>
             <footer>
-            <Footer />
+                <Footer />
             </footer>
         </div>
         </>

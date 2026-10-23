@@ -71,9 +71,9 @@ export const NavBar = () => {
           <div className="mt-1 me-3 logo-container">
             <img src={logo} alt="logo" className="logo-img" />
           </div>
-          <Navbar.Brand className="fw-semibold me-2 brand-text" href="/">Luca Rodríguez</Navbar.Brand>
+          <Navbar.Brand className="fw-semibold me-2 brand-text" href="/"><a>Luca Rodríguez</a></Navbar.Brand>
         </div>
-        <Navbar.Brand className="w-500 ms-2 me-auto brand-description" href="/">DESARROLLO WEB · SOFTWARE · SOLUCIONES DIGITALES</Navbar.Brand>
+        <Navbar.Brand className="w-500 ms-2 me-auto brand-description" href="/"><a>DESARROLLO WEB · SOFTWARE · SOLUCIONES DIGITALES</a></Navbar.Brand>
         <Navbar.Toggle ref={togglerRef} aria-controls="nav-body" />
         <Navbar.Collapse id="nav-body">
           <Nav className="ms-auto">
@@ -83,6 +83,10 @@ export const NavBar = () => {
 
             <Nav.Link href="#servicios" onClick={() => setExpanded(false)}>
               Servicios
+            </Nav.Link>
+
+            <Nav.Link href="#productos" onClick={() => setExpanded(false)}>
+              Proyectos
             </Nav.Link>
 
             <Nav.Link href="#contacto" onClick={() => setExpanded(false)}>
