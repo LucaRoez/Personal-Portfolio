@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import CarouselModule from "react-multi-carousel";
 import { ArrowUpRight } from "react-bootstrap-icons";
-import hero from "../assets/hero.jpg";
+import heroPhoto from "../assets/hero-photo.png";
 import '../css/Banner.css';
 import "react-multi-carousel/lib/styles.css";
 import options from "../data/texto-banner.json";
@@ -83,23 +83,29 @@ export const Banner = () => {
         <section id="home" className="p-3 pt-0 mt-1">
             <Container fluid>
                 <Row className="my-3 mt-0">
-                    <Col id="first-col" className="p-4 rounded-3 d-flex flex-column">
+                    <Col id="first-col" className=" rounded-3 d-flex flex-column">
                         <div className="hero-layout">
-                            <div className="typing-banner">
+                            <div className="ms-2 mt-2 typing-banner">
                                 <h1>Hacé crecer tu negocio con
                                     <span> {text}</span><span className="typing-cursor">_</span></h1>
                                 <p></p>
                             </div>
-                            <div className="hero-image rounded-3">
-                                <img src={hero} alt="perfil" />
+                            <div className="hero-image">
+                                <img src={heroPhoto} alt="Foto de Perfil" />
                             </div>
-                            <div className="btn-content ms-auto">
+                            <div className="btn-content ms-1 mb-3">
                                 <button className="btn-cta">Solicitar presupuesto <ArrowUpRight size={18} strokeWidth={2}/></button>
                             </div>
                         </div>
                     </Col>
                     <Col id="second-col" xl={6}>
-                        <Carousel responsive={responsive} infinite={true} swipeable={true} draggable={true} className="services-carousel">
+                        <Carousel responsive={responsive}
+                            infinite={true}
+                            autoPlay={true} autoPlaySpeed={5000}
+                            swipeable={true}
+                            draggable={true}
+                            className="services-carousel"
+                        >
                             {
                                 services.map((service) => {
                                     const src = images[`../assets/images/services/${service.src}`];
