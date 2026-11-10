@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://lucarodriguez.pages.dev/sitemap.xml
