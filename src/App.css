@@ -15,7 +15,7 @@ section {
 .site-eyebrow {
   display: flex;
 }
-.site-eyebrow span {
+.site-eyebrow h1 {
   font-size: 1em;
   font-weight: 500;
   color: var(--color-text-muted);

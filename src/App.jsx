@@ -25,7 +25,7 @@ function App() {
             </header>
             <main>
             <div className="site-eyebrow ps-1">
-                <span>DESARROLLO WEB Y SOFTWARE · EN PARAGUAY</span>
+                <h1>Desarrollo Web y Software en Paraguay | Luca Rodríguez</h1>
             </div>
             <Banner />
             <Services onWhatsAppContact={handleWhatsAppContact} />
